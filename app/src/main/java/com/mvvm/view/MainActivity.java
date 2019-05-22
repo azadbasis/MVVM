@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mvvm.R;
+import com.mvvm.model.User;
 import com.mvvm.viewmodel.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,29 +31,12 @@ public class MainActivity extends AppCompatActivity {
         et1 = findViewById(R.id.et1);
         btnAdd = findViewById(R.id.btnAdd);
 
-        //For ViewModel
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        mainActivityViewModel.getAllUser().observe(this, new Observer<User[]>() {
             @Override
-            public void onClick(View v) {
-
-                String result = mainActivityViewModel.additionFunctions(et1.getText().toString(), et2.getText().toString());
-                Toast.makeText(MainActivity.this, "Add " + result, Toast.LENGTH_SHORT).show();
+            public void onChanged(@Nullable User[] users) {
 
             }
         });
-        //For LiveData
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                mainActivityViewModel.additionFunction(et1.getText().toString(), et2.getText().toString()).observe(MainActivity.this, new Observer<String>() {
-                    @Override
-                    public void onChanged(@Nullable String s) {
-                        Toast.makeText(MainActivity.this, "Add " + s, Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-            }
-        });
     }
 }
