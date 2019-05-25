@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.mvvm.R;
 import com.mvvm.model.User;
 import com.mvvm.viewmodel.MainActivityViewModel;
+import com.raywenderlich.android.validatetor.ValidateTor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 
         et2 = findViewById(R.id.et2);
